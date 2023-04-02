@@ -9,6 +9,10 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 h1 {
   font-size: 1.5em;
 }
@@ -19,7 +23,6 @@ h1 {
   &.action {
     cursor: pointer;
   }
-
 
   &.disabled {
     cursor: default;
