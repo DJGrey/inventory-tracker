@@ -3,5 +3,6 @@
   <app-ingredient-item
     *ngFor="let ingredient of (ingredientsList | async)?.ingredients"
     [ingredient]="ingredient"
+    [staffId]="staffId"
   />
 </div>

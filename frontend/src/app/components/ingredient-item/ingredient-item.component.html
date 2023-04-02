@@ -12,6 +12,7 @@
       matTooltip="Log delivered items"
       color="primary"
       aria-label="Delivery"
+      (click)="handleDelivery()"
     >
       <mat-icon>local_shipping</mat-icon>
     </button>
@@ -20,6 +21,7 @@
       matTooltip="Log wasted stock"
       color="primary"
       aria-label="Waste"
+      (click)="handleWaste()"
     >
       <mat-icon>delete</mat-icon>
     </button>
@@ -28,6 +30,7 @@
       matTooltip="Update stock count"
       color="primary"
       aria-label="Delivery"
+      (click)="handleChange()"
     >
       <mat-icon>edit</mat-icon>
     </button>
