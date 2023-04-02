@@ -134,7 +134,7 @@ export class AppService implements OnModuleInit {
     ).list;
 
     // For each recipe.
-    await recipePrices.forEach(async (recipePrice) => {
+    for (const recipePrice of recipePrices) {
       const recipeIngredientLinks: Partial<RecipeIngredientEntity>[] = [];
 
       const newRecipe: Partial<RecipeEntity> = {
@@ -167,7 +167,7 @@ export class AppService implements OnModuleInit {
       // Save inserts if it doesn't already exists or updates if it does.
       await this.recipeRepository.save(newRecipe);
       await this.recipeIngredientRepository.save(recipeIngredientLinks);
-    });
+    }
   }
 
   async importIngredientsFromCsv(neededIds: number[]): Promise<void> {
@@ -188,10 +188,10 @@ export class AppService implements OnModuleInit {
       )
     ).list;
 
-    return ingredientsRows.forEach(async (row) => {
+    for (const row of ingredientsRows) {
       // Check if ingredients are needed by this location.
       if (!neededIds.includes(parseInt(row.ingredient_id))) {
-        return;
+        continue;
       }
 
       // Insert ingredient into database.
@@ -204,7 +204,7 @@ export class AppService implements OnModuleInit {
 
       // Save inserts if it doesn't already exists or updates if it does.
       await this.ingredientRepository.save(newIngredient);
-    });
+    }
   }
 
   async importStaffFromCsv(): Promise<void> {
@@ -219,12 +219,12 @@ export class AppService implements OnModuleInit {
       })
     ).list;
 
-    return rows.forEach(async (row) => {
+    for (const row of rows) {
       // Check if recipe is used at this location.
       if (row.location_id.toString() !== process.env.LOCATION_ID) {
-        return;
+        continue;
       }
-      console.log(row);
+
       // Insert ingredient into database.
       const newStaff: Partial<StaffEntity> = {
         id: parseInt(row.staff_id),
@@ -234,7 +234,7 @@ export class AppService implements OnModuleInit {
 
       // Save inserts if it doesn't already exists or updates if it does.
       await this.staffRepository.save(newStaff);
-    });
+    }
   }
 
   getHello(): string {

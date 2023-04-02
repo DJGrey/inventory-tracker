@@ -19,7 +19,7 @@ export class IngredientsService {
     // TODO: This should use the cached value in the ingredients table. However, this requires the trigger, which we is not yet implemented.
     const result = await this.stockChangeRepository
       .createQueryBuilder('stockChange')
-      .select('SUM(stockQuantityChange)', 'sum')
+      .select('SUM(stockChange.stockQuantityChange)', 'sum')
       .where({ ingredientId })
       .getRawOne();
 
@@ -28,7 +28,7 @@ export class IngredientsService {
 
   async checkTotals(updates: UpdateIngredientCountDto[]): Promise<void> {
     // Ensure that there are enough of each ingredient in stock.
-    updates.forEach(async (update) => {
+    for (const update of updates) {
       const currentCount = await this.getIngredientCount(update.id);
 
       // Update can be positive (i.e. stock is added) -  always allow this.
@@ -41,7 +41,7 @@ export class IngredientsService {
           HttpStatus.PRECONDITION_FAILED,
         );
       }
-    });
+    }
   }
 
   async addUpdates(
