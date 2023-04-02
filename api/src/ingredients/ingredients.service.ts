@@ -23,7 +23,7 @@ export class IngredientsService {
       .where({ ingredientId })
       .getRawOne();
 
-    return Number(result.cost) || 0;
+    return Number(result.sum) || 0;
   }
 
   async checkTotals(updates: UpdateIngredientCountDto[]): Promise<void> {
