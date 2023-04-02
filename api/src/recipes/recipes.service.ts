@@ -14,7 +14,8 @@ export class RecipesService {
   async getAll(): Promise<ReadRecipeDto[]> {
     const recipes = await this.recipeRepository
       .createQueryBuilder('recipe')
-      .leftJoinAndSelect('recipe.ingredients', 'ingredients')
+      .leftJoinAndSelect('recipe.recipeIngredients', 'recipeIngredients')
+      .orderBy('recipe.name', 'ASC')
       .getMany();
 
     return recipes.map((recipe) => {

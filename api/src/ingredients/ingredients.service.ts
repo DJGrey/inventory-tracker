@@ -65,7 +65,10 @@ export class IngredientsService {
   }
 
   async getAll(): Promise<ReadIngredientDto[]> {
-    const allIngredients = await this.ingredientRepository.find();
+    const allIngredients = await this.ingredientRepository
+      .createQueryBuilder('ingredient')
+      .orderBy('ingredient.name', 'ASC')
+      .getMany();
 
     return allIngredients.map((ingredient) => {
       return {
