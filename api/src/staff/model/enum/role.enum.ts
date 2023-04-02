@@ -1,0 +1,6 @@
+export enum Role {
+  STAFF = 'STAFF',
+  BACK_OF_HOUSE = 'BACK_OF_HOUSE',
+  CHEF = 'CHEF',
+  LOCATION_MANAGER = 'LOCATION_MANAGER',
+}
