@@ -5,6 +5,8 @@ import { CsvParser } from 'nest-csv-parser';
 import * as path from 'path';
 import { Repository } from 'typeorm';
 import { IngredientEntity } from './ingredients/model/entity/ingredient.entity';
+import { StockChangeEntity } from './ingredients/model/entity/stock_change.entity';
+import { StockChangeType } from './ingredients/model/enum/stock_change_type.enum';
 import { Unit } from './ingredients/model/enum/unit.enum';
 import { IngredientCsvRow } from './model/csv/ingredients.csv';
 import { MenusCsvRow } from './model/csv/menus.csv';
@@ -28,6 +30,8 @@ export class AppService implements OnModuleInit {
     private recipeIngredientRepository: Repository<RecipeIngredientEntity>,
     @InjectRepository(StaffEntity)
     private staffRepository: Repository<StaffEntity>,
+    @InjectRepository(StockChangeEntity)
+    private stockChangeRepository: Repository<StockChangeEntity>,
   ) {}
 
   async onModuleInit(): Promise<void> {
@@ -54,6 +58,10 @@ export class AppService implements OnModuleInit {
 
     console.log('Importing staff');
     await this.importStaffFromCsv();
+
+    // NOTE: Uncomment this to test selling recipes quickly.
+    // console.log('Artificially increasing stock for testing');
+    // await this.increaseStock(ingredientIds, 10);
   }
 
   async importRecipesFromCsv(): Promise<RecipePrice[]> {
@@ -235,6 +243,25 @@ export class AppService implements OnModuleInit {
       // Save inserts if it doesn't already exists or updates if it does.
       await this.staffRepository.save(newStaff);
     }
+  }
+
+  async increaseStock(ingredientIds: number[], quantity: 10): Promise<void> {
+    const staffMembers = await this.staffRepository.find();
+
+    const changes: Partial<StockChangeEntity>[] = ingredientIds.map(
+      (ingredientId) => {
+        return {
+          ingredientId,
+          // Get a random staff member.
+          staffMemberId:
+            staffMembers[Math.floor(Math.random() * staffMembers.length)].id,
+          stockQuantityChange: quantity,
+          type: StockChangeType.OTHER,
+        };
+      },
+    );
+
+    this.stockChangeRepository.save(changes);
   }
 
   getHello(): string {

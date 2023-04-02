@@ -16,6 +16,10 @@ Postgres admin on port 80, exposed on 5050.
 2. Run `docker compose up` in root
 3. Visit [localhost:4200](http://localhost:4200)
 
+### Testing
+
+To test selling menu items, visit the API `app.service.ts` and uncomment final stage of launch code to add stock artificially.
+
 ### Building
 
 `docker compose build`

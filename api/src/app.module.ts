@@ -6,6 +6,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { IngredientsModule } from './ingredients/ingredients.module';
 import { IngredientEntity } from './ingredients/model/entity/ingredient.entity';
+import { StockChangeEntity } from './ingredients/model/entity/stock_change.entity';
 import { RecipeEntity } from './recipes/model/entity/recipe.entity';
 import { RecipeIngredientEntity } from './recipes/model/entity/recipe_ingredient.entity';
 import { RecipesModule } from './recipes/recipes.module';
@@ -27,6 +28,7 @@ import { StaffModule } from './staff/staff.module';
       IngredientEntity,
       RecipeIngredientEntity,
       StaffEntity,
+      StockChangeEntity,
     ]),
     IngredientsModule,
     RecipesModule,
