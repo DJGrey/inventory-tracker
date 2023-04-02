@@ -1,41 +1,7 @@
 <div>
   <h1>Manage Ingredients</h1>
-  <div
-    class="card"
+  <app-ingredient-item
     *ngFor="let ingredient of (ingredientsList | async)?.ingredients"
-  >
-    <div class="content">
-      <div class="title">{{ ingredient.name }}</div>
-      <div class="subtitle">
-        {{ ingredient.stockCount }} {{ ingredient.unit | lowercase }}s &middot;
-        £{{ ingredient.cost }}
-      </div>
-    </div>
-    <div class="actions">
-      <button
-        mat-icon-button
-        matTooltip="Log delivered items"
-        color="primary"
-        aria-label="Delivery"
-      >
-        <mat-icon>local_shipping</mat-icon>
-      </button>
-      <button
-        mat-icon-button
-        matTooltip="Log wasted stock"
-        color="primary"
-        aria-label="Waste"
-      >
-        <mat-icon>delete</mat-icon>
-      </button>
-      <button
-        mat-icon-button
-        matTooltip="Update stock count"
-        color="primary"
-        aria-label="Delivery"
-      >
-        <mat-icon>edit</mat-icon>
-      </button>
-    </div>
-  </div>
+    [ingredient]="ingredient"
+  />
 </div>

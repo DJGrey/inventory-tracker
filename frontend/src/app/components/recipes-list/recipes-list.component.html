@@ -1,1 +1,7 @@
-<p>recipes-list works!</p>
+<div>
+  <h1>Log Sales</h1>
+  <app-recipe-item
+    *ngFor="let recipe of (recipesList | async)?.recipes"
+    [recipe]="recipe"
+  />
+</div>

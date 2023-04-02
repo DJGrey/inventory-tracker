@@ -1,1 +1,17 @@
-<p>recipe-item works!</p>
+<div class="card">
+  <div class="content">
+    <div class="title">{{ recipe.name }}</div>
+    <div class="subtitle">£{{ recipe.price }}</div>
+  </div>
+  <div class="actions">
+    <button
+      mat-button
+      matTooltip="Log sale of recipe"
+      color="primary"
+      aria-label="Sale"
+    >
+      <mat-icon>shopping_bag</mat-icon>
+      Log sale
+    </button>
+  </div>
+</div>
