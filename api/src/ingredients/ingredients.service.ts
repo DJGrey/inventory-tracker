@@ -1,18 +1,22 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { ReadIngredientDto } from './model/dto/read_ingredients.dto';
 import { UpdateIngredientCountDto } from './model/dto/update_ingredients_count.dto';
+import { IngredientEntity } from './model/entity/ingredient.entity';
 import { StockChangeEntity } from './model/entity/stock_change.entity';
 
 @Injectable()
 export class IngredientsService {
   constructor(
+    @InjectRepository(IngredientEntity)
+    private ingredientRepository: Repository<IngredientEntity>,
     @InjectRepository(StockChangeEntity)
     private stockChangeRepository: Repository<StockChangeEntity>,
   ) {}
 
   async getIngredientCount(ingredientId: number): Promise<number> {
-    // TOOD: This should use the cached value in the ingredients table. However, this requires the trigger, which we is not yet implemented.
+    // TODO: This should use the cached value in the ingredients table. However, this requires the trigger, which we is not yet implemented.
     const result = await this.stockChangeRepository
       .createQueryBuilder('stockChange')
       .select('SUM(stockQuantityChange)', 'sum')
@@ -58,5 +62,20 @@ export class IngredientsService {
     );
 
     this.stockChangeRepository.insert(newStockChanges);
+  }
+
+  async getAll(): Promise<ReadIngredientDto[]> {
+    const allIngredients = await this.ingredientRepository.find();
+
+    return allIngredients.map((ingredient) => {
+      return {
+        id: ingredient.id,
+        name: ingredient.name,
+        // This count will be incorrect until trigger is set up.
+        stockCount: ingredient.stockCount,
+        unit: ingredient.unit,
+        cost: ingredient.cost / 100,
+      };
+    });
   }
 }

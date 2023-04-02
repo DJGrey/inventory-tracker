@@ -1,5 +1,6 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { IngredientsService } from './ingredients.service';
+import { ReadIngredientsDto } from './model/dto/read_ingredients.dto';
 import { UpdateIngredientsCountDto } from './model/dto/update_ingredients_count.dto';
 
 @Controller('ingredients')
@@ -17,5 +18,12 @@ export class IngredientsController {
       body.staffId,
       body.recipeId || null,
     );
+  }
+
+  @Get()
+  async findAll(): Promise<ReadIngredientsDto> {
+    return {
+      ingredients: await this.ingredientsService.getAll(),
+    };
   }
 }
