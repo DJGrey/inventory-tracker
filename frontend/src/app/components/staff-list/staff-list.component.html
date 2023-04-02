@@ -1,1 +1,18 @@
-<p>staff-list works!</p>
+<div>
+  <h1>Who are you?</h1>
+  <div
+    class="card"
+    *ngFor="let staff of (staffList | async)?.staff"
+    (click)="select.emit(staff.id)"
+  >
+    <div class="content">
+      <div class="title">{{ staff.name }}</div>
+      <div class="subtitle">
+        {{ staff.role.replaceAll("_", " ") | titlecase }}
+      </div>
+    </div>
+    <div class="actions">
+      <mat-icon>arrow_right</mat-icon>
+    </div>
+  </div>
+</div>

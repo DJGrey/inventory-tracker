@@ -1,3 +1,10 @@
-<div>
-  {{(home | async)?.title}}
-</div>
+<main role="main">
+  <div>
+    <div *ngIf="!staffId">
+      <app-staff-list (select)="setStaffId($event)"></app-staff-list>
+    </div>
+    <div *ngIf="staffId">
+      <app-inventory-manager [staffId]="staffId"></app-inventory-manager>
+    </div>
+  </div>
+</main>

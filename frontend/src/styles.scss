@@ -1,4 +1,54 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+h1 {
+  font-size: 1.5em;
+}
+
+.card {
+  padding: 10px;
+
+  cursor: pointer;
+
+  &.disabled {
+    cursor: default;
+    opacity: 0.8;
+  }
+
+  margin-bottom: 5px;
+
+  border: 1px solid lightgray;
+  border-radius: 10px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+
+  .title {
+    font-size: 1em;
+    margin-bottom: 0.2em;
+  }
+
+  .subtitle {
+    font-size: 0.8em;
+    margin: 0;
+  }
+
+  .actions {
+    flex-grow: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+}
