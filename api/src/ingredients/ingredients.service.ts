@@ -43,6 +43,7 @@ export class IngredientsService {
   async addUpdates(
     updates: UpdateIngredientCountDto[],
     staffId: number,
+    recipeId?: number,
   ): Promise<void> {
     const newStockChanges: Partial<StockChangeEntity>[] = updates.map(
       (update) => {
@@ -50,6 +51,8 @@ export class IngredientsService {
           ingredientId: update.id,
           stockQuantityChange: update.quantityChange,
           staffMemberId: staffId,
+          type: update.changeType,
+          recipeId: recipeId || null,
         };
       },
     );

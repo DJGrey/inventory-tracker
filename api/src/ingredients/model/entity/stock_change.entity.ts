@@ -1,3 +1,4 @@
+import { RecipeEntity } from 'src/recipes/model/entity/recipe.entity';
 import { StaffEntity } from 'src/staff/model/entity/staff.entity';
 import {
   Column,
@@ -6,7 +7,7 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { Unit } from '../enum/unit.enum';
+import { StockChangeType } from '../enum/stock_change_type.enum';
 import { IngredientEntity } from './ingredient.entity';
 
 @Entity()
@@ -26,6 +27,15 @@ export class StockChangeEntity {
   })
   ingredient: IngredientEntity;
 
+  @Column({ name: 'recipe_id' })
+  recipeId: number;
+
+  @ManyToOne(() => RecipeEntity)
+  @JoinColumn({
+    name: 'recipe_id',
+  })
+  recipe: RecipeEntity;
+
   @Column({ name: 'staff_member_id' })
   staffMemberId: number;
 
@@ -34,6 +44,9 @@ export class StockChangeEntity {
     name: 'staff_member_id',
   })
   staffMember: StaffEntity;
+
+  @Column({ type: 'enum', enum: StockChangeType })
+  type: StockChangeType;
 
   @Column({
     type: 'timestamptz',
