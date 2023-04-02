@@ -12,7 +12,9 @@ Postgres admin on port 80, exposed on 5050.
 
 ### Running locally
 
-`docker compose up`
+1. [Install docker](https://docs.docker.com/get-docker/)
+2. Run `docker compose up` in root
+3. Visit [localhost:4200](http://localhost:4200)
 
 ### Building
 
