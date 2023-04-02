@@ -16,7 +16,10 @@ h1 {
 .card {
   padding: 10px;
 
-  cursor: pointer;
+  &.action {
+    cursor: pointer;
+  }
+
 
   &.disabled {
     cursor: default;

@@ -1,1 +1,8 @@
-<p>inventory-manager works!</p>
+<mat-tab-group>
+  <mat-tab label="Menu"
+    ><app-recipes-list [staffId]="staffId"></app-recipes-list
+  ></mat-tab>
+  <mat-tab label="Ingredients"
+    ><app-ingredients-list [staffId]="staffId"></app-ingredients-list
+  ></mat-tab>
+</mat-tab-group>

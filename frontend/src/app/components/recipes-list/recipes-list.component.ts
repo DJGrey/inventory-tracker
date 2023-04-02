@@ -1,10 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-recipes-list',
   templateUrl: './recipes-list.component.html',
-  styleUrls: ['./recipes-list.component.scss']
+  styleUrls: ['./recipes-list.component.scss'],
 })
 export class RecipesListComponent {
-
+  @Input() staffId!: number;
 }
