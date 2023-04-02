@@ -34,3 +34,17 @@ Connection: postgres
 Maintenance Database: db
 Username: user
 Password: password
+
+
+## Setting Location
+In `docker-compose.yaml` set LOCATION_ID in API environment to match the ID of the location in the locations sheet in spreadsheet.
+
+Fill `/data_exports` with CSV exports of spreadsheet. Three files required:
+- recipes.csv
+- ingredients.csv
+- staff.csv
+- menus.csv
+
+
+## For discussion
+1. Some ingredients that are listed in a recipe are 

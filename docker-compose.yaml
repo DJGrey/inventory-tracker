@@ -21,6 +21,7 @@ services:
       - postgres
     environment:
       DATABASE_URL: postgres://user:password@postgres:5432/db
+      LOCATION_ID: 1
       NODE_ENV: development
       JWT_SECRET: hard_to_guess_secret_123
       PORT: 3000
