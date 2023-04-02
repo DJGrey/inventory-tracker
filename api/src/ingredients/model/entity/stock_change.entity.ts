@@ -27,7 +27,7 @@ export class StockChangeEntity {
   })
   ingredient: IngredientEntity;
 
-  @Column({ name: 'recipe_id' })
+  @Column({ name: 'recipe_id', nullable: true })
   recipeId: number;
 
   @ManyToOne(() => RecipeEntity)
