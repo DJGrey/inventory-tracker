@@ -15,10 +15,7 @@ export class StockChangeEntity {
   id: number;
 
   @Column('float')
-  stockQuantity: number;
-
-  @Column({ type: 'enum', enum: Unit })
-  unit: Unit;
+  stockQuantityChange: number;
 
   @Column({ name: 'ingredient_id' })
   ingredientId: number;
