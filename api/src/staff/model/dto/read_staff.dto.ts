@@ -5,3 +5,7 @@ export class ReadStaffDto {
   name: string;
   role: Role;
 }
+
+export class ReadAllStaffDto {
+  staff: ReadStaffDto[];
+}

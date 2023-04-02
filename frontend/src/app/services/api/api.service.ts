@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { ReadAllStaffDto, ReadStaffDto } from 'src/app/models/read_staff.dto';
 
 @Injectable({
   providedIn: 'root',
@@ -8,7 +9,7 @@ import { Observable } from 'rxjs';
 export class ApiService {
   constructor(private http: HttpClient) {}
 
-  getTest(): Observable<any> {
-    return this.http.get<any>('api');
+  getStaff(): Observable<ReadAllStaffDto> {
+    return this.http.get<any>('/staff');
   }
 }

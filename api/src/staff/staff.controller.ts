@@ -1,5 +1,5 @@
 import { Controller, Get } from '@nestjs/common';
-import { ReadAllStaffDto } from './model/dto/readAllStaff.dto';
+import { ReadAllStaffDto } from './model/dto/read_staff.dto';
 import { StaffService } from './staff.service';
 
 @Controller('staff')
