@@ -7,7 +7,7 @@ import { UpdateIngredientsCountDto } from './model/dto/update_ingredients_count.
 export class IngredientsController {
   constructor(private ingredientsService: IngredientsService) {}
 
-  @Post('changes')
+  @Post('stock-changes')
   async updateIngedientCounts(
     @Body() body: UpdateIngredientsCountDto,
   ): Promise<void> {
