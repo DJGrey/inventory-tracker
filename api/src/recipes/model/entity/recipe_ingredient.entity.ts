@@ -19,7 +19,7 @@ export class RecipeIngredientEntity {
   @Column({ name: 'recipe_id' })
   recipeId: number;
 
-  @ManyToOne(() => RecipeEntity)
+  @ManyToOne(() => RecipeEntity, (recipe) => recipe.recipeIngredients)
   @JoinColumn({
     name: 'recipe_id',
   })

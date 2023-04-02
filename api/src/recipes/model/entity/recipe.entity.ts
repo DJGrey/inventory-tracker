@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryColumn } from 'typeorm';
+import { RecipeIngredientEntity } from './recipe_ingredient.entity';
 
 @Entity()
 export class RecipeEntity {
@@ -11,6 +12,12 @@ export class RecipeEntity {
   // Integer as price are stored in cents.
   @Column('integer')
   price: number;
+
+  @OneToMany(
+    () => RecipeIngredientEntity,
+    (recipeIngredient) => recipeIngredient.recipe,
+  )
+  recipeIngredients: RecipeIngredientEntity[];
 
   @Column({
     type: 'timestamptz',
