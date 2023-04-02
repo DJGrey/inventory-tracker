@@ -19,9 +19,11 @@ Postgres admin on port 80, exposed on 5050.
 `docker compose build`
 
 ### TODOs
+
 - Perpetuating database after close - need to handle this elegantly with export and import for example.
 
 ### Accessing database via PG Admin
+
 Launch locally. Visit [localhost:5050](http://localhost:5050).
 
 Login with these details:
@@ -35,16 +37,17 @@ Maintenance Database: db
 Username: user
 Password: password
 
-
 ## Setting Location
+
 In `docker-compose.yaml` set LOCATION_ID in API environment to match the ID of the location in the locations sheet in spreadsheet.
 
 Fill `/data_exports` with CSV exports of spreadsheet. Three files required:
+
 - recipes.csv
 - ingredients.csv
 - staff.csv
 - menus.csv
 
+These are loaded into the database on API launch.
 
 ## For discussion
-1. Some ingredients that are listed in a recipe are 
